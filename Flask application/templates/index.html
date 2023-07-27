@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Disease Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+  <h1>Disease Prediction</h1>
+  <form action="{{ url_for('predict') }}" method="post">
+    {% for dropdown, options in dropdown_options.items() %}
+    <div class="form-group">
+      <label for="{{ dropdown }}">{{ dropdown }}</label>
+      <select name="{{ dropdown }}" id="{{ dropdown }}">
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+    </select>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+
+  <div id="prediction"></div>
+</body>
+</html>
